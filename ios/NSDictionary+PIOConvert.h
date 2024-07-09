@@ -11,8 +11,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSDictionary(PIOConvert)
-- (PIOGeoRegion *)geoRegion;
-- (PIOBeaconRegion *)beaconRegion;
 - (PIONotificationCategory *)notificationCategory;
 - (PIOConversionEvent *)conversionEvent;
 + (NSDictionary *)dictionaryFromPreference:(PIOPreference *)preference;

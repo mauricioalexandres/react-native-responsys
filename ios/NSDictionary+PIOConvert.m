@@ -10,44 +10,6 @@
 
 @implementation NSDictionary(PIOConvert)
 
-- (PIOGeoRegion *)geoRegion {
-    NSString *geofenceId = [RCTConvert NSString:self[@"geofenceId"]];
-    NSString *geofenceName = [RCTConvert NSString:self[@"geofenceName"]];
-    double speed = [RCTConvert double:self[@"speed"]];
-    double bearing = [RCTConvert double:self[@"bearing"]];
-    NSString *zoneId = [RCTConvert NSString:self[@"zoneId"]];
-    NSString *zoneName = [RCTConvert NSString:self[@"zoneName"]];
-    NSString *source = [RCTConvert NSString:self[@"source"]];
-    NSInteger dwellTime = [RCTConvert NSInteger:self[@"dwellTime"]];
-    NSDictionary *extra = [RCTConvert NSDictionary:self[@"extra"]];
-
-    PIOGeoRegion *geoRegion = [[PIOGeoRegion alloc] initWithGeofenceId:geofenceId geofenceName:geofenceName speed:speed bearing:bearing source:source zoneId:zoneId zoneName:zoneName dwellTime:dwellTime extra:extra];
-    
-    return geoRegion;
-}
-
-- (PIOBeaconRegion *)beaconRegion {
-    NSString *iBeaconUUID = [RCTConvert NSString:self[@"iBeaconUUID"]];
-    NSInteger iBeaconMajor = [RCTConvert NSInteger:self[@"iBeaconMajor"]];
-    NSInteger iBeaconMinor = [RCTConvert NSInteger:self[@"iBeaconMinor"]];
-    NSString *beaconId = [RCTConvert NSString:self[@"beaconId"]];
-    NSString *beaconName = [RCTConvert NSString:self[@"beaconName"]];
-    NSString *beaconTag = [RCTConvert NSString:self[@"beaconTag"]];
-    NSString *proximity = [RCTConvert NSString:self[@"proximity"]];
-    NSString *zoneId = [RCTConvert NSString:self[@"zoneId"]];
-    NSString *zoneName = [RCTConvert NSString:self[@"zoneName"]];
-    NSString *source = [RCTConvert NSString:self[@"source"]];
-    NSInteger dwellTime = [RCTConvert NSInteger:self[@"dwellTime"]];
-    NSDictionary *extra = [RCTConvert NSDictionary:self[@"extra"]];
-    NSString *eddyStoneId1 = [RCTConvert NSString:self[@"eddyStoneId1"]];
-    NSString *eddyStoneId2 = [RCTConvert NSString:self[@"eddyStoneId2"]];
-    PIOBeaconRegion *beaconRegion = [[PIOBeaconRegion alloc] initWithiBeaconUUID:iBeaconUUID iBeaconMajor:iBeaconMajor iBeaconMinor:iBeaconMinor beaconId:beaconId beaconName:beaconName beaconTag:beaconTag proximity:proximity source:source zoneId:zoneId zoneName:zoneName dwellTime:dwellTime extra:extra];
-    beaconRegion.eddyStoneId1 = eddyStoneId1;
-    beaconRegion.eddyStoneId2 = eddyStoneId2;
-    
-    return beaconRegion;
-}
-
 - (PIOConversionEvent *)conversionEvent {
     NSString *orderId = [RCTConvert NSString:self[@"orderId"]];
     double orderTotal = [RCTConvert double:self[@"orderTotal"]];
@@ -93,11 +55,11 @@
 - (NSString *)JSON {
     NSError *err;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:0 error:&err];
-    
+
     if(err != nil) {
         return nil;
     }
-    
+
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
@@ -162,7 +124,7 @@
                blue  = 0.0f;
                NSLog(@"Color value %@ is invalid.  It should be a hex value of the form #RBG, #ARGB, #RRGGBB, or #AARRGGBB. Default color set to Black", hexString);
                       break;
-               
+
        }
     return [UIColor colorWithRed: red green: green blue: blue alpha: alpha];
 }

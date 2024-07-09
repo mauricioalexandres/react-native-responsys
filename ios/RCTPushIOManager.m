@@ -16,17 +16,17 @@
 @implementation RCTPushIOManager
 
 - (instancetype)init {
-    
+
     self = [super init];
-    
+
     if(self) {
-      
+
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"PIO_setOpenURLListener"]) {
             [[PushIOManager sharedInstance] setDeeplinkDelegate:self];
         }
-        
+
     }
-    
+
     return  self;
 }
 
@@ -70,7 +70,7 @@ RCT_EXPORT_METHOD(registerApp:(RCTResponseSenderBlock)callback) {
         callback(@[error.description?: [NSNull null], response ?: @"success"]);
     }];
 }
-    
+
 RCT_EXPORT_METHOD(unregisterApp:(RCTResponseSenderBlock)callback) {
   [[PushIOManager sharedInstance] unregisterApp:nil completionHandler:^(NSError *error, NSString *response) {
     callback(@[error.description?: [NSNull null], response ?: @"success"]);
@@ -153,7 +153,7 @@ RCT_EXPORT_METHOD(declarePreference:(NSString *)key label:(NSString *)label type
         [[PushIOManager sharedInstance] declarePreference:key label:label type:([type isEqualToString:@"STRING"] ? PIOPreferenceTypeString : ([type isEqualToString:@"NUMBER"] ? PIOPreferenceTypeNumeric : PIOPreferenceTypeBoolean)) error:&error];
         callback(@[error.description?: [NSNull null],@"success"]);
     }
-  
+
 }
 
 RCT_EXPORT_METHOD(setBooleanPreference:(NSString *)key forValue:(BOOL)value completionHandler:(RCTResponseSenderBlock)callback) {
@@ -210,7 +210,7 @@ RCT_EXPORT_METHOD(setBadgeCount:(NSInteger)badgeCount completionHandler:(RCTResp
             callback(@[error.description?: [NSNull null], response ?: @"success"]);
         }];
     });
-    
+
 }
 
 RCT_EXPORT_METHOD(resetBadgeCount:(RCTResponseSenderBlock)callback) {
@@ -314,51 +314,6 @@ RCT_EXPORT_METHOD(resetAllData) {
 
 RCT_EXPORT_METHOD(isResponsysPayload:message completionHandler:(RCTResponseSenderBlock)callback) {
   callback(@[[NSNull null], @([[PushIOManager sharedInstance] isResponsysPayload:message])]);
-}
-
-RCT_EXPORT_METHOD(didEnterGeoRegion:(NSDictionary *)region  completionHandler:(RCTResponseSenderBlock)callback) {
-    PIOGeoRegion *geoRegion = [region geoRegion];
-    NSMutableDictionary *responseDictionary = [NSMutableDictionary dictionary];
-    responseDictionary[@"regionType"] = @"GEOFENCE_ENTRY";
-    responseDictionary[@"regionID"] = geoRegion.geofenceId;
-
-    [[PushIOManager sharedInstance] didEnterGeoRegion:geoRegion completionHandler:^(NSError *error, NSString *response) {
-        callback(@[error.description?: [NSNull null], responseDictionary]);
-    }];
-}
-
-RCT_EXPORT_METHOD(didExitGeoRegion:(NSDictionary *)region  completionHandler:(RCTResponseSenderBlock)callback) {
-    PIOGeoRegion *geoRegion = [region geoRegion];
-    NSMutableDictionary *responseDictionary = [NSMutableDictionary dictionary];
-    responseDictionary[@"regionType"] = @"GEOFENCE_EXIT";
-    responseDictionary[@"regionID"] = geoRegion.geofenceId;
-
-    [[PushIOManager sharedInstance] didExitGeoRegion:geoRegion completionHandler:^(NSError *error, NSString *response) {
-        callback(@[error.description?: [NSNull null], responseDictionary]);
-    }];
-}
-
-RCT_EXPORT_METHOD(didEnterBeaconRegion:(NSDictionary *)region  completionHandler:(RCTResponseSenderBlock)callback) {
-
-    PIOBeaconRegion *beaconRegion = [region beaconRegion];
-    NSMutableDictionary *responseDictionary = [NSMutableDictionary dictionary];
-    responseDictionary[@"regionType"] = @"BEACON_ENTRY";
-    responseDictionary[@"regionID"] = beaconRegion.beaconId;
-
-    [[PushIOManager sharedInstance] didEnterBeaconRegion:beaconRegion completionHandler:^(NSError *error, NSString *response) {
-        callback(@[error.description?: [NSNull null], responseDictionary]);
-    }];
-}
-
-RCT_EXPORT_METHOD(didExitBeaconRegion:(NSDictionary *)region  completionHandler:(RCTResponseSenderBlock)callback) {
-    PIOBeaconRegion *beaconRegion = [region beaconRegion];
-    NSMutableDictionary *responseDictionary = [NSMutableDictionary dictionary];
-    responseDictionary[@"regionType"] = @"BEACON_EXIT";
-    responseDictionary[@"regionID"] = beaconRegion.beaconId;
-
-    [[PushIOManager sharedInstance] didExitBeaconRegion:[region beaconRegion] completionHandler:^(NSError *error, NSString *response) {
-        callback(@[error.description?: [NSNull null], responseDictionary]);
-    }];
 }
 
 RCT_EXPORT_METHOD(setDelayRichPushDisplay:(BOOL)delayRichPush) {
