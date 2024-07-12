@@ -19,8 +19,6 @@ import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.google.firebase.messaging.RemoteMessage;
 import com.pushio.manager.PIOConversionEvent;
-import com.pushio.manager.PIOBeaconRegion;
-import com.pushio.manager.PIOGeoRegion;
 import com.pushio.manager.PIOInteractiveNotificationButton;
 import com.pushio.manager.PIOInteractiveNotificationCategory;
 import com.pushio.manager.PIOLogger;
@@ -88,87 +86,6 @@ class RCTPIOCommonUtils {
         }
 
         return builder.build();
-    }
-
-    static PIOGeoRegion geoRegionFromReadableMap(ReadableMap readableMap, PIORegionEventType regionEventType) {
-
-        PIOGeoRegion region = new PIOGeoRegion();
-
-        final String geofenceId = readableMap.getString("geofenceId");
-        final String geofenceName = readableMap.getString("geofenceName");
-
-        if (TextUtils.isEmpty(geofenceId) || TextUtils.isEmpty(geofenceName)) {
-            return null;
-        }
-
-        region.setGeofenceId(geofenceId);
-        region.setGeofenceName(geofenceName);
-        region.setRegionEventType(regionEventType);
-        region.setZoneName(readableMap.getString("zoneName"));
-        region.setZoneId(readableMap.getString("zoneId"));
-        region.setSource(readableMap.getString("source"));
-        region.setDeviceBearing(readableMap.getDouble("deviceBearing"));
-        region.setDeviceSpeed(readableMap.getDouble("deviceSpeed"));
-        region.setDwellTime(readableMap.getInt("dwellTime"));
-
-        if (readableMap.hasKey("extra")) {
-            ReadableMap extraData = readableMap.getMap("extra");
-            if (extraData != null) {
-                ReadableMapKeySetIterator iterator = extraData.keySetIterator();
-                Map<String, String> customParams = new HashMap<>();
-                while (iterator.hasNextKey()) {
-                    String key = iterator.nextKey();
-                    customParams.put(key, extraData.getString(key));
-                }
-                region.setExtra(customParams);
-            }
-        }
-
-        return region;
-    }
-
-    static PIOBeaconRegion beaconRegionFromReadableMap(ReadableMap readableMap, PIORegionEventType regionEventType) {
-
-        PIOBeaconRegion region = new PIOBeaconRegion();
-
-        final String beaconId = readableMap.getString("beaconId");
-        final String beaconName = readableMap.getString("beaconName");
-
-        if (TextUtils.isEmpty(beaconId) || TextUtils.isEmpty(beaconName)) {
-            return null;
-        }
-
-        region.setBeaconId(beaconId);
-        region.setBeaconName(beaconName);
-
-        region.setBeaconTag(readableMap.getString("beaconTag"));
-        region.setBeaconProximity(readableMap.getString("beaconProximity"));
-        region.setiBeaconUUID(readableMap.getString("iBeaconUUID"));
-        region.setiBeaconMajor(readableMap.getInt("iBeaconMajor"));
-        region.setiBeaconMinor(readableMap.getInt("iBeaconMinor"));
-        region.setEddyStoneID1(readableMap.getString("eddyStoneId1"));
-        region.setEddyStoneID2(readableMap.getString("eddyStoneId2"));
-
-        region.setRegionEventType(regionEventType);
-        region.setZoneName(readableMap.getString("zoneName"));
-        region.setZoneId(readableMap.getString("zoneId"));
-        region.setSource(readableMap.getString("source"));
-        region.setDwellTime(readableMap.getInt("dwellTime"));
-
-        if (readableMap.hasKey("extra")) {
-            ReadableMap extraData = readableMap.getMap("extra");
-            if (extraData != null) {
-                ReadableMapKeySetIterator iterator = extraData.keySetIterator();
-                Map<String, String> customParams = new HashMap<>();
-                while (iterator.hasNextKey()) {
-                    String key = iterator.nextKey();
-                    customParams.put(key, extraData.getString(key));
-                }
-                region.setExtra(customParams);
-            }
-        }
-
-        return region;
     }
 
     static PIOInteractiveNotificationCategory notificationCategoryFromReadableMap(ReadableMap readableMap) {

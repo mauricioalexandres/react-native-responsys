@@ -50,14 +50,14 @@ export default class PushIOManager {
     /**
      * @typedef {object} InteractiveNotificationButton
      * @property {string} id
-     * @property {string} action 
+     * @property {string} action
      * @property {string} label
      */
 
     /**
      * @typedef {object} RemoteMessage
      * @property {string} to
-     * @property {string=} collapseKey 
+     * @property {string=} collapseKey
      * @property {string=} messageId
      * @property {string=} messageType
      * @property {string=} ttl
@@ -67,7 +67,7 @@ export default class PushIOManager {
     /**
      * @typedef {object} GeoRegion
      * @property {string} geofenceId
-     * @property {string} geofenceName 
+     * @property {string} geofenceName
      * @property {string} zoneName
      * @property {string} zoneId
      * @property {string} source
@@ -80,7 +80,7 @@ export default class PushIOManager {
     /**
      * @typedef {object} BeaconRegion
      * @property {string} beaconId
-     * @property {string} beaconName 
+     * @property {string} beaconName
      * @property {string} beaconTag
      * @property {string} beaconProximity
      * @property {string} iBeaconUUID
@@ -105,7 +105,7 @@ export default class PushIOManager {
      */
 
     /**
-     * 
+     *
     * loggingLevel; to be used with [setLogLevel()]{@link setLogLevel}
     * @typedef {Enumerator}loggingLevel
     * @param {number} NONE:0
@@ -117,11 +117,11 @@ export default class PushIOManager {
     * @readonly
     * @enum {number}
     * @memberof PushIOManager
-    * 
+    *
     */
 
     /**
-     * Sets the log level to print in console. 
+     * Sets the log level to print in console.
      * @param {number} loggingLevel Numeric value to set type of logging
      */
 
@@ -131,7 +131,7 @@ export default class PushIOManager {
 
     /**
     * Gets the Responsys SDK version.
-    * @param {callback} callback Success callback with the SDK version value. 
+    * @param {callback} callback Success callback with the SDK version value.
     */
 
     static getLibVersion(callback) {
@@ -143,11 +143,11 @@ export default class PushIOManager {
     }
 
     /**
-    * Sets Enable/Disable logging. By default logging is enabled with default Info {@link loggingLevel}. 
+    * Sets Enable/Disable logging. By default logging is enabled with default Info {@link loggingLevel}.
     * <br/>Developer can change the log level by calling {@link setLogLevel}.
-    * @param {boolean} isEnabled true, enable console log printing. 
+    * @param {boolean} isEnabled true, enable console log printing.
     * <br/> false, disable console log printing.
-    * 
+    *
     */
 
     static setLoggingEnabled(isEnabled) {
@@ -156,7 +156,7 @@ export default class PushIOManager {
 
     /**
     * Registers this app installation with Responsys.
-    * 
+    *
     * @param {boolean} useLocation Whether to send location data along with the registration request. Passing `true` will show the default system location permission dialog prompt.
     * (User location is not available on iOS platform.)
     * @param {callback} callback callback with boolean value TRUE if register event created and stored successfully, FALSE otherwise.
@@ -175,7 +175,7 @@ export default class PushIOManager {
 
     /**
     * Registers this app installation with Responsys.
-    * 
+    *
     * @param {boolean} enablePushNotification Whether to enable push notifications. Passing `true` will show the default system push notification permission dialog prompt.
     * (Not available on iOS platform.)
     * @param {boolean} useLocation Whether to send location data along with the registration request. Passing `true` will show the default system location permission dialog prompt.
@@ -196,9 +196,9 @@ export default class PushIOManager {
     /**
      * Unregister this app installation with Responsys. This will prevent the app from receiving push notifications.
      * @see {@tutorial Config}
-     * @param {callback} callback callback with boolean value TRUE if unregister event created and stored successfully, 
+     * @param {callback} callback callback with boolean value TRUE if unregister event created and stored successfully,
      * <br/>FALSE otherwise.
-     * 
+     *
      */
 
     static unregisterApp(callback) {
@@ -211,8 +211,8 @@ export default class PushIOManager {
      * @see {@tutorial Config}
      * @param {string} fileName Name of the json config file.
      * @param {callback} callback callback with the result of configuration.
-     * 
-     * 
+     *
+     *
      */
 
     static configure(fileName, callback) {
@@ -242,7 +242,7 @@ export default class PushIOManager {
     /**
      * Records pre-defined and custom events.
      * <br/>You can set extra properties specific to this event via the properties parameter.
-     * 
+     *
      * @param {string} eventName name of the event to be tracked
      * @param {object} properties event properties to attach with the given event name.
      * @param {function} callback callback.
@@ -298,7 +298,7 @@ export default class PushIOManager {
     }
 
     /**
-     * Removes association between this app installation and the User ID that 
+     * Removes association between this app installation and the User ID that
      * was set earlier using [registerUserId]{@link registerUserId}.
      * <br/>Generally used when the user logs out.
      */
@@ -310,10 +310,10 @@ export default class PushIOManager {
     /**
      * Sends push engagement information to Responsys.
      * <br>Tracks the engagement for the provided engagement metric type with additional properties
-     * 
+     *
      * @param {engagementType} metric One of [engagementType]{@link engagementType}
      * @param {object=} properties Custom data to be sent along with this request.
-     * @param {callback} callback callback. 
+     * @param {callback} callback callback.
      */
 
     static trackEngagement(metric, properties, callback) {
@@ -345,7 +345,7 @@ export default class PushIOManager {
         RCTPushIOManager.trackMessageCenterDisplayEngagement(messageId);
     }
     /**
-     * Create a session when MessagaCenter/Inbox view will appear. 
+     * Create a session when MessagaCenter/Inbox view will appear.
      */
 
     static onMessageCenterViewDisplayed() {
@@ -369,12 +369,12 @@ export default class PushIOManager {
 
     /**
      * Declares a preference that will be used later with [set...Preference()]{@link setStringPreference}
-     * 
+     *
      * @param {string} key Unique ID for this preference.
      * @param {string} label Human-Readable description of this preference.
      * @param {string} valueType Data type of this preference. Possible values: 'STRING', 'NUMBER', 'BOOLEAN'.
-     * @param {callback} callback Success callback. 
-     * 
+     * @param {callback} callback Success callback.
+     *
      * @see {@link setBoolPreference}
      * @see {@link setNumberPreference}
      * @see {@link setStringPreference}
@@ -386,7 +386,7 @@ export default class PushIOManager {
 
     /**
      * Saves the key/value along with the label provided earlier in [declarePreference]{@link declarePreference}
-     * 
+     *
      * @param {string} key Unique ID for this preference.
      * @param {string} value Value of type String.
      * @param {callback} callback callback with boolean value TRUE if string preference value assigned, FALSE otherwise
@@ -397,10 +397,10 @@ export default class PushIOManager {
     }
     /**
      * Saves the key/value along with the label provided earlier in [declarePreference]{@link declarePreference}
-     * 
+     *
      * @param {string} key Unique ID for this preference.
      * @param {number} value Value of type Number.
-     * @param {callback} callback Success callback. 
+     * @param {callback} callback Success callback.
      */
 
     static setNumberPreference(key, value, callback) {
@@ -409,7 +409,7 @@ export default class PushIOManager {
 
     /**
      * Saves the key/value along with the label provided earlier in [declarePreference]{@link declarePreference}
-     * 
+     *
      * @param {string} key Unique ID for this preference.
      * @param {boolean} value Value of type Boolean.
      * @param {callback} callback callback with preference if preference is found for the key, NULL otherwise.
@@ -438,7 +438,7 @@ export default class PushIOManager {
     }
     /**
      * Removes preference data for the given key.
-     * 
+     *
      * @param {string} key Unique ID for this preference.
      */
 
@@ -473,7 +473,7 @@ export default class PushIOManager {
 
     /**
     * Sets the advertising ID.
-    * @param {string} advertisingId External Device Tracking ID. 
+    * @param {string} advertisingId External Device Tracking ID.
     */
 
     static setAdvertisingID(advertisingId) {
@@ -487,7 +487,7 @@ export default class PushIOManager {
     /**
      * Gets the advertising ID.
      * <br/> In iOS, its Advertising Identifier (IDFA) (@link setAdvertisingID}
-     * @param {callback} callback Success callback with advertising Identifier. 
+     * @param {callback} callback Success callback with advertising Identifier.
      */
 
     static getAdvertisingID(callback) {
@@ -500,7 +500,7 @@ export default class PushIOManager {
 
     /**
      * Gets the Responsys Device ID.
-     * @param {callback} callback Success callback with device ID value. 
+     * @param {callback} callback Success callback with device ID value.
      */
 
     static getDeviceID(callback) {
@@ -509,7 +509,7 @@ export default class PushIOManager {
 
     /**
      * sets the Responsys web URL.
-     * 
+     *
      * @param {string} executeRsysWebURL url
      */
 
@@ -519,8 +519,8 @@ export default class PushIOManager {
 
     /**
      * Gets the Responsys web URL.
-     * 
-     * @param {callback} callback Success callback with device ID value. 
+     *
+     * @param {callback} callback Success callback with device ID value.
      */
 
     static getExecuteRsysWebUrl(callback) {
@@ -533,7 +533,7 @@ export default class PushIOManager {
 
     /**
      * Removes push engagement related data for a session.
-     * <br/>This will prevent further engagements from being reported until the app is opened again via a push notification. 
+     * <br/>This will prevent further engagements from being reported until the app is opened again via a push notification.
      */
 
     static resetEngagementContext() {
@@ -543,7 +543,7 @@ export default class PushIOManager {
     /**
      * Gets the maximum age of engagement
      * @param {callback} callback callback with number value of server returned max age value (when application invoked from email).
-     * <br/> Return -1 if no max age (from server) fetched. 
+     * <br/> Return -1 if no max age (from server) fetched.
      */
 
     static getEngagementMaxAge(callback) {
@@ -558,9 +558,9 @@ export default class PushIOManager {
     static getEngagementTimestamp(callback) {
         RCTPushIOManager.getEngagementTimestamp(callback);
     }
-    /** 
+    /**
      * Enable the fetch messages for all message center names from the server
-     * @param {boolean} messageCenterEnabled boolean value to enable the messages fetch. 
+     * @param {boolean} messageCenterEnabled boolean value to enable the messages fetch.
      * <br/> True to enable ,False to disable.
      */
 
@@ -570,7 +570,7 @@ export default class PushIOManager {
 
     /**
      * Gets the status of MessageCenter enabled
-     * @param {function} callback callback with boolean value. 
+     * @param {function} callback callback with boolean value.
      */
 
     static isMessageCenterEnabled(callback) {
@@ -579,7 +579,7 @@ export default class PushIOManager {
 
     /**
      * Fetch the list of Message Center messages for given MessageCenter name.
-     * 
+     *
      * @param {string} messageCenter  Name of MessageCenter to fetch the list of messages
      * @param {callback} callback Success callback with messageCenter and messages, Failure callback with messageCenter and errorReason
      */
@@ -590,7 +590,7 @@ export default class PushIOManager {
 
     /**
      * Fetches rich content for the given message ID.
-     * 
+     *
      * @param {string} messageID
      * @param {callback} callback Success callback with messageId and richContent, Failure callback with messageId and errorReason
      */
@@ -600,10 +600,10 @@ export default class PushIOManager {
     }
     /**
      * Sets the badge count on app icon for the no. of Message Center messages.
-     * 
+     *
      * @param {number} badgeCount
      * @param {boolean} forceSetBadge Force a server-sync for the newly set badge count.
-     * @param {callback} callback callback. 
+     * @param {callback} callback callback.
     */
 
     static setBadgeCount(badgeCount, forceSetBadge, callback) {
@@ -616,8 +616,8 @@ export default class PushIOManager {
 
     /**
      * Gets the current badge count for Message Center messages.
-     * 
-     * @param {callback} callback callback as a number value. 
+     *
+     * @param {callback} callback callback as a number value.
      */
 
     static getBadgeCount(callback) {
@@ -626,9 +626,9 @@ export default class PushIOManager {
 
     /**
      * Resets the badge count for Message Center messages.<br/>This is equivalent to calling [setBadgeCount(0, true)]{@link PushIOManager#setsetBadgeCount}
-     * 
+     *
      * @param {boolean} forceSetBadge Force a server-sync for the newly set badge count.
-     * @param {callback} callback callback. 
+     * @param {callback} callback callback.
      */
 
     static resetBadgeCount(forceSetBadge, callback) {
@@ -653,17 +653,17 @@ export default class PushIOManager {
 
     /**
     * Removes all In-App messages from the SDK's cache.
-    * 
+    *
     */
 
     static clearInAppMessages() {
         RCTPushIOManager.clearInAppMessages();
     }
     /**
-     * Enable/Disable the in-app messages pre-fetch. 
-     * <br/>If enabled, all the in-app messages are pre-fetch and stored in the SDK, and triggered from local storage. 
+     * Enable/Disable the in-app messages pre-fetch.
+     * <br/>If enabled, all the in-app messages are pre-fetch and stored in the SDK, and triggered from local storage.
      * <br/>If disabled then in-app messages are not pre-fetched, so not available to be triggered for the event i.e.: $ExplicitAppOpen.
-     * @param {Boolean} isEnabled 
+     * @param {Boolean} isEnabled
      */
 
     static setInAppFetchEnabled(isEnabled) {
@@ -675,8 +675,8 @@ export default class PushIOManager {
     }
 
     /**
-     * Enable the crash logging of PushIO sdk. 
-     * <br/>It will not make and capture any crashes of apps. By default it is enable. You can set `NO` 
+     * Enable the crash logging of PushIO sdk.
+     * <br/>It will not make and capture any crashes of apps. By default it is enable. You can set `NO`
      * <br/>if you do not want PushIO sdk to collect crashes.
      * @param {Boolean} isEnabled boolean value to enable the crash logging.
      */
@@ -703,7 +703,7 @@ export default class PushIOManager {
     /**
      * Sets the device token
      * <br/> available in Android only
-     * @param {string} deviceToken 
+     * @param {string} deviceToken
      */
 
     static setDeviceToken(deviceToken) {
@@ -715,8 +715,8 @@ export default class PushIOManager {
     }
     /**
      * Checks if the push payload provided is sent by Responsys platform or not.
-     * @param {object} message 
-     * @param {callback} callback 
+     * @param {object} message
+     * @param {callback} callback
      */
 
     static isResponsysPush(message, callback) {
@@ -743,7 +743,7 @@ export default class PushIOManager {
 
     /**
      * Informs the SDK that the user has exited a geo-fence.
-     * 
+     *
      * @param {GeoRegion} region
      * @param {callback} callback callback with regionID and regionType.
      */
@@ -753,37 +753,6 @@ export default class PushIOManager {
             RCTPushIOManager.onGeoRegionExited(region, callback);
         } else {
             RCTPushIOManager.didExitGeoRegion(region, callback);
-        }
-    }
-
-    /**
-     * Informs the SDK that the user has entered a beacon region.
-     * 
-     * @param {BeaconRegion} region
-     * @param {callback} callback callback with regionID and regionType.
-     */
-
-    static onBeaconRegionEntered(region, callback) {
-        if (Platform.OS === 'android') {
-            RCTPushIOManager.onBeaconRegionEntered(region, callback);
-        } else {
-            RCTPushIOManager.didEnterBeaconRegion(region, callback);
-        }
-    }
-
-    /**
-     * Informs the SDK that the user has exited a beacon region.
-     * 
-     * @param {BeaconRegion} region
-     * @param {callback} callback callback with regionID and regionType.
-     */
-
-    static onBeaconRegionExited(region, callback) {
-        if (Platform.OS === 'android') {
-            RCTPushIOManager.onBeaconRegionExited(region, callback);
-        } else {
-            RCTPushIOManager.didExitBeaconRegion(region, callback);
-
         }
     }
 
@@ -832,7 +801,7 @@ export default class PushIOManager {
     // Android-Only APIs
     /**
      * Sets Enable/Disable the Message Center badging
-     * @param {Boolean} isBadgingEnabled 
+     * @param {Boolean} isBadgingEnabled
      */
     static setMessageCenterBadgingEnabled(isBadgingEnabled) {
         if (Platform.OS === 'android') {
@@ -842,8 +811,8 @@ export default class PushIOManager {
         }
     }
     /**
-     * 
-     * @param {*} areNotificationsStacked 
+     *
+     * @param {*} areNotificationsStacked
      */
 
     static setNotificationsStacked(areNotificationsStacked) {
@@ -904,8 +873,8 @@ export default class PushIOManager {
     }
     /**
      * Adds a new app-defined Interactive Notification category.
-     * @param {InteractiveNotificationCategory} notificationCategory 
-     * @param {callback} callback 
+     * @param {InteractiveNotificationCategory} notificationCategory
+     * @param {callback} callback
      */
 
     static addInteractiveNotificationCategory(notificationCategory, callback) {
@@ -917,7 +886,7 @@ export default class PushIOManager {
     }
     /**
      * Removes app-defined Interactive Notification category.
-     * @param {string} categoryId 
+     * @param {string} categoryId
      */
 
     static deleteInteractiveNotificationCategory(categoryId) {
@@ -929,8 +898,8 @@ export default class PushIOManager {
     }
     /**
      * Gets a single Interactive Notification category for the given category ID.
-     * @param {string} categoryId 
-     * @param {callback} callback 
+     * @param {string} categoryId
+     * @param {callback} callback
      */
 
     static getInteractiveNotificationCategory(categoryId, callback) {
@@ -945,7 +914,7 @@ export default class PushIOManager {
 
     // iOS-Only APIs
     /**
-     * 
+     *
      */
     static registerForRemoteNotifications() {
         if (Platform.OS === 'ios') {
@@ -957,7 +926,7 @@ export default class PushIOManager {
 
     /**
      * registerForAllRemoteNotificationTypes Listener is added
-     * @param {callback} callback 
+     * @param {callback} callback
      */
 
     static registerForAllRemoteNotificationTypes(callback) {
@@ -982,7 +951,7 @@ export default class PushIOManager {
     * Only available on iOS platform.
      * @param {int} authOptions Notification auth types i.e.: Sound/Badge/Alert.
      * @param {InteractiveNotificationCategory[]} categories categories Contains the notification categories definitions.
-     * @param {*} callback 
+     * @param {*} callback
      */
 
     static registerForNotificationAuthorizations(authOptions, categories, callback) {
@@ -994,8 +963,8 @@ export default class PushIOManager {
     }
 
     /**
-     * Asks user permissions for all push notifications types. i.e.: Sound/Badge/Alert types. You can pass the notification categories definitions to register. 
-     * 
+     * Asks user permissions for all push notifications types. i.e.: Sound/Badge/Alert types. You can pass the notification categories definitions to register.
+     *
      * Only available on iOS platform.
      *
      * @param {InteractiveNotificationCategory[]} categories Contains the notification categories definitions.
@@ -1025,7 +994,7 @@ export default class PushIOManager {
     }
     /**
      * Checks if the push notification response provided is sent by Responsys platform or not.
-     * @param {*} response 
+     * @param {*} response
      * @param {callback} callback with boolean value.TRUE if push payload is sent by Responsys platform otherwise FALSE.
      */
 
@@ -1077,9 +1046,9 @@ export default class PushIOManager {
         return RCTPushIOEventEmitter.addListener('PIORsysWebURLResolvedNotification', callback);
     }
     /**
-     * To Add listener for deelink 
-     * @param {Boolean} isSet 
-     * @param {callback} callback 
+     * To Add listener for deelink
+     * @param {Boolean} isSet
+     * @param {callback} callback
      */
 
     static setOpenURLListener(isSet, callback) {
@@ -1114,8 +1083,8 @@ export default class PushIOManager {
     }
     /**
      * Tracks the conversions for PUSHIO_ENGAGEMENT_METRIC_INAPP_PURCHASE and PUSHIO_ENGAGEMENT_METRIC_PURCHASE events.
-     * @param {ConversionEvent} event 
-     * @param {callback} callback 
+     * @param {ConversionEvent} event
+     * @param {callback} callback
      */
 
     static trackConversionEvent(event, callback) {
@@ -1128,8 +1097,8 @@ export default class PushIOManager {
 
     /**
      *  Sets delay in registration. Registration will be delayed while launching the app/from coming to background
-     * @param {Boolean} delayRegistration 
-     * 
+     * @param {Boolean} delayRegistration
+     *
      */
 
     static setDelayRegistration(delayRegistration) {
@@ -1140,7 +1109,7 @@ export default class PushIOManager {
         }
     }
     /**
-     * This api provides the status, if `setDelayRegistration` is enabled of not. 
+     * This api provides the status, if `setDelayRegistration` is enabled of not.
      * @param {callback} callback with boolean value. true if registration will be delayed otherwise false
      *
      */
