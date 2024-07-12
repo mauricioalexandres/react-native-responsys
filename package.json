@@ -7,9 +7,6 @@
     "type": "git",
     "url": "https://github.com/oracle/pushiomanager-react-native"
   },
-  "scripts": {
-    "postinstall":"./postinstall.sh"
-  },
   "keywords": [
     "responsys",
     "pushio",
